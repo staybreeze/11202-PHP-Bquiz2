@@ -3,17 +3,22 @@ date_default_timezone_set("Asia/Taipei");
 session_start();
 class DB{
 
-    protected $dsn = "mysql:host=localhost;charset=utf8;dbname=db15";
-    protected $pdo;
-    protected $table;
-    
+    protected $dsn = "mysql:host=localhost;charset=utf8;dbname=db15"; // 資料庫連接字串，包含主機地址、字元集、資料庫名稱
+    protected $pdo; // PDO 實例，用於執行資料庫操作
+    protected $table; // 資料表名稱
+
+    // 建構子，初始化資料表名稱並建立 PDO 連線
+    // 建構子是一個特殊的方法，用於在物件被建立（實例化）時執行初始化操作。
+    // 建構子的名稱通常與類別名稱相同，且不帶有返回型別。
+    // 也就是__construct($table)
     public function __construct($table)
     {
-        $this->table=$table;
-        //$this->pdo=new PDO($this->dsn,'s1120401','s1120401');
+        $this->table = $table; // 將資料表名稱存儲在物件屬性中
+        $this->pdo = new PDO($this->dsn, 'root', ''); // 創建 PDO 連線，使用 root 用戶名和空密碼
+
+        // 設定 PDO 連線選項，以便在發生錯誤時拋出異常
         $this->pdo=new PDO($this->dsn,'root','');
     }
-
 
     function all( $where = '', $other = '')
     {
