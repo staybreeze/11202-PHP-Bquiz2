@@ -59,6 +59,9 @@
 					</span>
 					<div class="">
 						<?php
+						// 這行程式碼的目的是確保 $do 變數總是有一個值，
+						// 並且該值是從 $_GET['do'] 中獲取的，
+						// 如果 $_GET['do'] 不存在或為 null，則使用預設值 'main'。
 							$do=$_GET['do']??'main';
 							$file="./front/{$do}.php";
 							if(file_exists($file)){
