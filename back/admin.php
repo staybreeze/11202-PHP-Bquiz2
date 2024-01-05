@@ -20,7 +20,7 @@
 
 <fieldset>
     <legend>帳號管理</legend>
-    <form action="./edit_user.php" method="post">
+    <form action="./api/edit_user.php" method="post">
         <table class="tableAcc">
             <tr>
                 <th>帳號</th>
