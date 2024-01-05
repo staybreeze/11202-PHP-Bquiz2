@@ -1,35 +1,29 @@
 <fieldset>
-<legend>新增問卷</legend>
-<form action="">
-<div style="display: flex;">
-    <div>問卷名稱</div>
+    <legend>新增問卷</legend>
+    <form action="./api/add_que.php" method="post">
+    <div style="display: flex;">
+        <div>問卷名稱</div>
+        <div>
+            <input type="text" name="subject">
+        </div>
+    </div>
     <div>
-        <input type="text" name="subject" id="">
-    </div>
-</div>
+        <div id="opt">選項
+            <input type="text" name="option[]">
+            <input type="button" value="更多" onclick="more()">
+        </div>
 
-<div>
-    <div id="opt">選項
-
-    <input type="text" name="option" id="">
-    <input type="button" value="更多" onclick="more()">
     </div>
-</div>
 <div class="ct">
-    <input type="submit" value="送出">
-    <input type="reset" value="清空">
+    <input type="submit" value="送出"><input type="reset" value="清空">
 </div>
 </form>
 </fieldset>
-
 <script>
-
 function more(){
-
     let opt=`<div id="opt">選項
-    <input type="text" name="optiom">
-    </div>`
+                <input type="text" name="option[]">
+            </div>`
     $("#opt").before(opt);
-}
-
+}    
 </script>
