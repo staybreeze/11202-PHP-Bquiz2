@@ -19,6 +19,7 @@
 	<div id="all">
 		<div id="title">
 			<?= date("m月d日 l"); ?> | 
+			<!-- 查找 $Total 對象中當天日期的相關數據，並提取該數據中 'total' 鍵對應的值，然後顯示該值 -->
 			今日瀏覽: <?=$Total->find(['date'=>date("Y-m-d")])['total'];?> | 
 			累積瀏覽: <?=$Total->sum('total');?>
 			<a href="index.php" style='float:right'>回首頁</a>
