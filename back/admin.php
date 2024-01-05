@@ -31,7 +31,7 @@
                 <?php
                 $users = $User->all();
                 foreach ($users as $user) {
-
+if($user['acc']!='admin'){
 
                 ?>
                     <td><?= $user['acc']; ?></td>
@@ -41,6 +41,7 @@
 
 
         <?php
+        }
                 }
         ?>
         </table>
