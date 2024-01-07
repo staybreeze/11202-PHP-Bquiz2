@@ -29,13 +29,19 @@
 </fieldset>
 <script>
 function reg(){
+    // 先設定變數陣列將各別資料吃進去
     let user={acc:$("#acc").val(),
               pw:$("#pw").val(),
               pw2:$("#pw2").val(),
               email:$("#email").val()
             }
+            // 填寫內容不可空白
     if(user.acc!='' && user.pw!='' && user.pw2!='' && user.email!=''){
+    //    密碼與第二密碼必須相同
         if(user.pw==user.pw2){
+            // 1. 傳送到哪裡
+            // 2.傳送什麼
+            // 3.回傳值
             $.post("./api/chk_acc.php",{acc:user.acc},(res)=>{
                 //console.log(res)
                 if(parseInt(res)==1){
