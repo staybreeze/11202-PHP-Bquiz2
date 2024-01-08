@@ -1,7 +1,3 @@
-
-
-
-
 <style>
     .type-item{
         display: block;
@@ -19,7 +15,6 @@
 
 <fieldset class='types'>
     <legend>分類網誌</legend>
-        <!-- data-可以放純數字 -->
 <a class='type-item' data-id="1">健康新知</a>
 <a class='type-item' data-id="2">菸害防治</a>
 <a class='type-item' data-id="3">癌症防治</a>
@@ -34,9 +29,7 @@
 </fieldset>
 
 <script>
-        // 使其頁面初始便有文章
-getList(1) 
-
+getList(1)    
     $(".type-item").on('click',function(){
         $(".type").text($(this).text())
         let type=$(this).data('id')
@@ -45,15 +38,16 @@ getList(1)
     })
 function getList(type){
     $.get("./api/get_list.php",{type},(list)=>{
-                    // 再把(list)丟到
         $(".list-items").html(list)
-        $(".article,.list-items").toggle();
+        $(".article").hide();
+        $(".list-items").show();
     })
 }
 function getNews(id){
     $.get("./api/get_news.php",{id},(news)=>{
         $(".article").html(news)
-        $(".article,.list-items").toggle();
+        $(".article").show();
+        $(".list-items").hide();
     })
 }
 </script>

@@ -1,56 +1,35 @@
-<style>
-    table {
-        margin-top: 10px;
-    }
-
-    .tableAcc {
-        width: 100%;
-        text-align: center;
-    }
-
-    .tableAcc>tr>td {
-        width: 33%;
-        text-align: center;
-    }
-
-    th {
-        background-color: gainsboro;
-    }
-</style>
-
 <fieldset>
     <legend>帳號管理</legend>
     <form action="./api/edit_user.php" method="post">
-        <table class="tableAcc">
-            <tr>
-                <th>帳號</th>
-                <th>密碼</th>
-                <th>刪除</th>
-            </tr>
-            <tr>
-                <?php
-                $users = $User->all();
-                foreach ($users as $user) {
-if($user['acc']!='admin'){
-
-                ?>
-                    <td><?= $user['acc']; ?></td>
-                    <td><?= str_repeat("*", mb_strlen($user['pw'])); ?></td>
-                    <td><input type="checkbox" name="del[]" id="" value="<?= $user['id']; ?>"></td>
-            </tr>
-
-
-        <?php
+    <table style="width:55%;margin:auto;text-align:center">
+        <tr>
+            <td class='clo'>帳號</td>
+            <td class='clo'>密碼</td>
+            <td class='clo'>刪除</td>
+        </tr>
+    <?php
+    $rows=$User->all();
+    foreach($rows as $row){
+        if($row['acc']!='admin'){
+    ?>
+        <tr>
+            <td><?=$row['acc'];?></td>
+            <td><?=str_repeat("*", mb_strlen($row['pw']));?></td>
+            <td>
+                <input type="checkbox" name="del[]" value="<?=$row['id'];?>">
+            </td>
+        </tr>
+    <?php
         }
-                }
-        ?>
-        </table>
-        <div class="ct">
-            <input type="submit" value="確定刪除">
-            <input type="reset" value="清空選取">
-        </div>
-    </form>
+    }
+    ?>        
+    </table>
+    <div class="ct">
+        <input type="submit" value="確定刪除"><input type="reset" value="清空選取">
+    </div>
 
+    </form>
+    <h2>新增會員</h2>
     <span style="color:red">*請設定您要註冊的帳號及密碼(最長12個字元)</span>
     <table>
         <tr>
@@ -79,33 +58,30 @@ if($user['acc']!='admin'){
     </table>
 </fieldset>
 <script>
-    function reg() {
-        let user = {
-            acc: $("#acc").val(),
-            pw: $("#pw").val(),
-            pw2: $("#pw2").val(),
-            email: $("#email").val()
-        }
-        if (user.acc != '' && user.pw != '' && user.pw2 != '' && user.email != '') {
-            if (user.pw == user.pw2) {
-                $.post("./api/chk_acc.php", {
-                    acc: user.acc
-                }, (res) => {
-                    //console.log(res)
-                    if (parseInt(res) == 1) {
-                        alert("帳號重覆")
-                    } else {
-                        $.post('./api/reg.php', user, (res) => {
-                            // 加這個，這個頁面重載一遍
-                            location.reload()
-                        })
-                    }
-                })
-            } else {
-                alert("密碼錯誤")
+function reg(){
+    let user={acc:$("#acc").val(),
+              pw:$("#pw").val(),
+              pw2:$("#pw2").val(),
+              email:$("#email").val()
             }
-        } else {
-            alert("不可空白")
+    if(user.acc!='' && user.pw!='' && user.pw2!='' && user.email!=''){
+        if(user.pw==user.pw2){
+            $.post("./api/chk_acc.php",{acc:user.acc},(res)=>{
+                //console.log(res)
+                if(parseInt(res)==1){
+                    alert("帳號重覆")
+                }else{
+                    $.post('./api/reg.php',user,(res)=>{
+                        location.reload()
+                    })
+                }
+            })
+        }else{
+            alert("密碼錯誤")
         }
+    }else{
+        alert("不可空白")
     }
+}
+
 </script>

@@ -59,9 +59,6 @@
 					</span>
 					<div class="">
 						<?php
-						// 這行程式碼的目的是確保 $do 變數總是有一個值，
-						// 並且該值是從 $_GET['do'] 中獲取的，
-						// 如果 $_GET['do'] 不存在或為 null，則使用預設值 'main'。
 							$do=$_GET['do']??'main';
 							$file="./front/{$do}.php";
 							if(file_exists($file)){
@@ -76,9 +73,9 @@
 			</div>
 		</div>
 		<div id="bottom">
-			本網站建議使用：IE9.0以上版本，1024 x 768 pixels 以上觀賞瀏覽 ， Copyright © 2012健康促進網社群平台 All Right Reserved
+			本網站建議使用：IE9.0以上版本，1024 x 768 pixels 以上觀賞瀏覽 ， Copyright © 2024健康促進網社群平台 All Right Reserved
 			<br>
-			服務信箱：health@test.labor.gov.tw<img src="./home_files/02B02.jpg" width="45">
+			服務信箱：health@test.labor.gov.tw<img src="./icon/02B02.jpg" width="45">
 		</div>
 	</div>
 

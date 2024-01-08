@@ -1,39 +1,36 @@
-<form action="./api/edit_news.php" method="post" style="text-align:center">
-    <table>
-
+<form action="./api/edit_news.php" method="post">
+    <table style="width:75%;text-align:center">
         <tr>
-            <th style="width:10%">編號</th>
-            <th style="width:70%">標題</th>
-            <th style="width:10%">顯示</th>
-            <th style="width:10%">刪除</th>
+            <td>編號</td>
+            <td style="width:70%">標題</td>
+            <td>顯示</td>
+            <td>刪除</td>
         </tr>
-        <?php
-        $total = $New->count();
-        $div = 3;
-        $pages = ceil($total / $div);
-        $now = $_GET['p'] ?? 1;
-        $start = ($now - 1) * $div;
-        $rows = $New->all(" limit $start,$div");
-
-
-        foreach ($rows as $idx => $row) {
-        ?>
-            <tr style='text-align:center'>
-                <td><?= $idx + 1 + $start; ?></td>
-                <td><?= $row['title']; ?></td>
-                <td>
-                    <input type="checkbox" name="sh[]" value="<?= $row['id']; ?>" <?= ($row['sh'] == 1) ? 'checked' : ''; ?>>
-                </td>
-                <td>
-                    <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
-                    <input type="checkbox" name="del[]" id="" value="<?= $row['id']; ?>">
-                </td>
-            </tr><?php
-                }
-                    ?>
+    <?php
+    $total=$News->count();
+    $div=3;
+    $pages=ceil($total/$div);
+    $now=$_GET['p']??1;
+    $start=($now-1)*$div;
+    $rows=$News->all(" limit $start,$div");
+    foreach($rows as $idx=>$row){
+    ?>
+        <tr>
+            <td><?=$idx+1+$start;?></td>
+            <td><?=$row['title'];?></td>
+            <td>
+                <input type="checkbox" name="sh[]" value="<?=$row['id'];?>" <?=($row['sh']==1)?'checked':'';?>>
+            </td>
+            <td>
+                <input type="checkbox" name="del[]" value="<?=$row['id'];?>">
+                <input type="hidden" name="id[]" value="<?=$row['id'];?>">
+            </td>
+        </tr>
+    <?php
+    }        
+    ?>        
     </table>
     <div class="ct">
-
     <?php
     if($now-1>0){
         $prev=$now-1;
@@ -54,6 +51,7 @@
         echo " </a>";
     }
     ?>
+    
     </div>
-    <input type="submit" value="確定修改" style="margin-top:50px">
+    <div class="ct"><input type="submit" value="修改確定"></div>
 </form>
