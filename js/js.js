@@ -4,27 +4,26 @@ function lo(th,url)
 	$.ajax(url,{cache:false,success: function(x){$(th).html(x)}})
 }
 
-
-// function good(id,type,user)
-// {
-// 	$.post("back.php?do=good&type="+type,{"id":id,"user":user},function()
-// 	{
-// 		if(type=="1")
-// 		{
-// 			$("#vie"+id).text($("#vie"+id).text()*1+1)
-// 			$("#good"+id).text("收回讚").attr("onclick","good('"+id+"','2','"+user+"')")
-// 		}
-// 		else
-// 		{
-// 			$("#vie"+id).text($("#vie"+id).text()*1-1)
-// 			$("#good"+id).text("讚").attr("onclick","good('"+id+"','1','"+user+"')")
-// 		}
+// 方法一:透過reload重整畫面，重新讀取資料庫的資料(流量需求大)
+// function good(news){
+// 	$.post("./api/good.php",{news},()=>{
+// 		location.reload();
 // 	})
 // }
 
-// 將上方的function good()改為下方
+// 方法二:不透過AJAX修改資料，並且不用透過RELOAD重整畫面(流量需求小)
 function good(news){
 	$.post("./api/good.php",{news},()=>{
-		location.reload();
+
+		switch($("#n"+news).text()){
+			case "讚":
+				$("#n"+news).text("收回讚")
+				$("#g"+news).text($("#g"+news).text()*1+1)
+			break;
+			case "收回讚":
+				$("#n"+news).text("讚")
+				$("#g"+news).text($("#g"+news).text()*1-1)
+			break;
+		} 
 	})
-	}
+}
