@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2024-01-05 09:03:00
+-- 產生時間： 2024-01-08 04:56:52
 -- 伺服器版本： 10.4.28-MariaDB
 -- PHP 版本： 8.0.28
 
@@ -20,6 +20,18 @@ SET time_zone = "+00:00";
 --
 -- 資料庫： `db15`
 --
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `log`
+--
+
+CREATE TABLE `log` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `news` int(10) UNSIGNED NOT NULL,
+  `acc` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -120,6 +132,12 @@ INSERT INTO `user` (`id`, `acc`, `pw`, `email`) VALUES
 --
 
 --
+-- 資料表索引 `log`
+--
+ALTER TABLE `log`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- 資料表索引 `news`
 --
 ALTER TABLE `news`
@@ -146,6 +164,12 @@ ALTER TABLE `user`
 --
 -- 在傾印的資料表使用自動遞增(AUTO_INCREMENT)
 --
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `log`
+--
+ALTER TABLE `log`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `news`
