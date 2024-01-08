@@ -53,6 +53,7 @@ $(".title").hover(
     function(){
         $(".pop").hide()
         let id=$(this).data("id")
+        // 因為每次滑入hover的id不一樣，因此要做成活的
         $("#p"+id).show();
     }
 )
